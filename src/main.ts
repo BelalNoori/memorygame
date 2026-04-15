@@ -13,3 +13,8 @@ function init(){
         })
     }
 }
+
+const playBtn = document.querySelector('.play-start');
+playBtn?.addEventListener('click', () => {
+    window.location.href = '/src/pages/settings.html';
+});

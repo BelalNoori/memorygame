@@ -83,26 +83,28 @@ body {
             height: 32px;
         }
 
-        .arrow {
-            display: inline-block;
-            width: 20px;
-            height: 2px;
-            position: relative;
-        }
+        // .arrow {
+        //     display: inline-block;
+        //     width: 20px;
+        //     height: 2px;
+        //     position: relative;
+        // }
 
-        .arrow::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: -4px;
-            width: 10px;
-            height: 10px;
-            border-right: 2px solid #303131;
-            border-top: 2px solid #303131;
-            transform: rotate(45deg);
-        }
+        // .arrow::after {
+        //     content: '';
+        //     position: absolute;
+        //     right: 0;
+        //     top: -4px;
+        //     width: 10px;
+        //     height: 10px;
+        //     border-right: 2px solid #303131;
+        //     border-top: 2px solid #303131;
+        //     transform: rotate(45deg);
+        // }
     }
 }
+
+
 
 
 
