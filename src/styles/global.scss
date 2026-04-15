@@ -1,0 +1,15 @@
+:root {
+    --bg-color: #303131;
+    --btn-color: #F0EA6E;
+    --option-card-color: #F6F6F6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin margin-top-bottom {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

@@ -1,12 +1,85 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settsings | Memory</title>
+    <link rel="stylesheet" href="/src/styles/settings.scss">
+    <title>Settings | Memory</title>
 </head>
+
 <body>
-    <h2>Settings</h2>
-    <img src="assets/lineundersettings.svg" alt="">
+    <div class="main-container">
+        <div class="settings-headline">
+            <h2>Settings</h2>
+            <img class="underline" src="/assets/linieundersettings.svg" alt="underline">
+        </div>
+
+        <div class="settings-left-container">
+            <div class="settings-section">
+                <div class="headline-image">
+                    <img src="/assets/palette.svg" alt="">
+                    <h3>Game themes</h3>
+                </div>
+                <ul>
+                    <li><input type="radio" id="theme1" name="theme" value="theme1">
+                        <label for="theme1">Code Vibes theme</label>
+                    </li>
+                    <li><input type="radio" id="theme2" name="theme" value="theme2">
+                        <label for="theme2">Games Theme</label>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="settings-section">
+                <div class="headline-image">
+                    <img src="/assets/chess_pawn.svg" alt="">
+                    <h3>Choose Player</h3>
+                </div>
+                <ul>
+                    <li><input type="radio" id="player1" name="player" value="player1">
+                        <label for="player1">Blue</label>
+                    </li>
+                    <li><input type="radio" id="player2" name="player" value="player2">
+                        <label for="player2">Orange</label>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="settings-section">
+                <div class="headline-image">
+                    <img src="/assets/style.svg" alt="">
+                    <h3>Board size</h3>
+                </div>
+                <ul>
+                    <li><input type="radio" id="size1" name="boardSize" value="size1">
+                        <label for="size1">16 Cards</label>
+                    </li>
+                    <li><input type="radio" id="size2" name="boardSize" value="size2">
+                        <label for="size2">24 Cards</label>
+                    </li>
+                    <li><input type="radio" id="size3" name="boardSize" value="size3">
+                        <label for="size3">32 Cards</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="settings-right-container">
+            <div class="theme-review">
+                <img src="/assets/ThemeVisual.svg" alt="">
+            </div>
+
+            <div class="test">
+                <div class="settings-option">
+                    <h2>Game Theme</h2>
+                    <h2>Player</h2>
+                    <h2>Board size</h2>
+                    <button>Start Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
