@@ -1,0 +1,55 @@
+@use './global' as *;
+
+body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    background-color: #303131;
+}
+
+.game-container {
+    display: flex;
+    width: 1217px;
+    height: 62px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .player-scores {
+        background-color: #86E9D633;
+        display: flex;
+        justify-content: center;
+        width: 292px;
+        height: 62px;
+        gap: 20px;
+
+        .labelss {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            .playerone {
+                color: #2BB1FF;
+                font-size: 24px;
+                font-weight: 700;
+                font-family: 'Red Rose';
+            }
+
+            .playertwo {
+                color: #F58E39;
+                font-size: 24px;
+                font-weight: 700;
+                font-family: 'Red Rose';
+            }
+        }
+
+        .labels {
+            width: 24px;
+        }
+    }
+}

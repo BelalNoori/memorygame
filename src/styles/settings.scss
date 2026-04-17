@@ -81,7 +81,7 @@ body {
     flex-direction: column;
 
     .test {
-        width: 547px;
+        width: 700px;
         height: 81px;
         background-color: var(--option-card-color);
         display: flex;
@@ -92,7 +92,29 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 42px;
+            gap: 32px;
+            width: 100%;
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .btn-option {
+                display: flex;
+                align-items: center;
+                width: 125px;
+                padding: 14px 20px;
+                background-color: var(--btn-color);
+                border: none;
+                gap: 8px;
+                cursor: pointer;
+
+                .btn-text {
+                    font-size: 20px;
+                    font-weight: 700;
+                    font-family: 'Red Rose';
+                }
+            }
         }
     }
 }
