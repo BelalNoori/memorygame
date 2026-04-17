@@ -10,14 +10,14 @@ body {
 
 .game-container {
     display: flex;
+    flex-direction: column;
     width: 1217px;
-    height: 62px;
 }
 
 .game-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
 
     .player-scores {
@@ -55,7 +55,8 @@ body {
 
     .current-player {
         display: flex;
-        padding-top: 45px;
+        align-items: flex-end;
+        gap: 8px;
 
         .current {
             font-size: 26px;
