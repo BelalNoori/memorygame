@@ -52,4 +52,38 @@ body {
             width: 24px;
         }
     }
+
+    .current-player {
+        display: flex;
+        padding-top: 45px;
+
+        .current {
+            font-size: 26px;
+            font-weight: 400;
+            font-family: 'Red Rose';
+            color: white;
+        }
+    }
+
+    .exit-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 207px;
+        height: 62px;
+        background-color: #86E9D633;
+        border: 1px solid #4DD5BC;
+        color: white;
+        gap: 10px;
+
+        img {
+            width: 30px;
+        }
+
+        .exit-text {
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Red Rose';
+        }
+    }
 }
