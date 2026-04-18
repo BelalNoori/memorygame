@@ -1,6 +1,26 @@
 const boardSize = localStorage.getItem('boardSize');
 const theme = localStorage.getItem('theme');
 
+const exitBtn = document.querySelector(".exit-btn");
+const popupOverlay = document.querySelector(".popup-overlay");
+const backToGameBtn = document.querySelector(".btnn");
+const exitGameBtn = document.querySelector(".btn-cold");
+
+// Popup öffnen
+exitBtn?.addEventListener('click', () => {
+    popupOverlay!.classList.add('active');
+});
+
+// Zurück zum Spiel
+backToGameBtn?.addEventListener('click', () => {
+    popupOverlay!.classList.remove('active');
+});
+
+// Zurück zu Settings
+exitGameBtn?.addEventListener('click', () => {
+    window.location.href = '/src/pages/settings.html';
+});
+
 const themeImages: Record<string, string[]> = {
     'theme1': [
         'git.svg',
