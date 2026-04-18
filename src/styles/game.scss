@@ -73,9 +73,15 @@ body {
         width: 207px;
         height: 62px;
         background-color: #86E9D633;
-        border: 1px solid #4DD5BC;
+        border: 1px solid var(--vibe-theme-color);
         color: white;
         gap: 10px;
+        cursor: pointer;
+
+        &:hover {
+            border: 3px solid var(--vibe-theme-color);
+            filter: drop-shadow(4px 4px 6px  var(--vibe-theme-color));
+        }
 
         img {
             width: 30px;
@@ -116,7 +122,7 @@ body {
             object-fit: contain;
         }
 
-        &--back {}
+        // &--back {}
 
         &--front {
             transform: rotateY(180deg);
@@ -146,5 +152,80 @@ body {
 
     &.size-36 {
         grid-template-columns: repeat(6, 120px);
+    }
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+
+    .popup-exit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 539px;
+        height: 270px;
+        padding: 40px;
+        background-color: white;
+    }
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 54px;
+    width: 459px;
+    height: 190px;
+
+    >h2 {
+        line-height: 40px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: 700;
+        font-family: 'Red Rose';
+        color: #303131;
+    }
+
+    .popup-btn {
+        display: flex;
+        gap: 24px;
+
+        .btnn {
+            background-color: var(--vibe-theme-color);
+            width: 182px;
+            height: 57px;
+            border: none;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #66CFBCB2;
+                border: 3px solid #3ABCA4;
+            }
+        }
+
+        .btn-cold {
+            background-color: #86E9D624;
+            width: 212px;
+            height: 57px;
+            border: none;
+            border: 2px solid var(--vibe-theme-color);
+            color: var(--vibe-theme-color);
+            cursor: pointer;
+        }
+
+        .popup-btn-text {
+            font-size: 26px;
+            font-weight: 700;
+            font-family: 'Red Rose';
+        }
     }
 }

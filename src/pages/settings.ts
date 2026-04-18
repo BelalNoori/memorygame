@@ -1,13 +1,31 @@
+localStorage.removeItem("theme");
+localStorage.removeItem("player");
+localStorage.removeItem("boardSize");
+
+const startBtn = document.querySelector(".btn-option") as HTMLButtonElement;
+startBtn.disabled = true;
+
+function checkAllSelected() {
+  const theme = localStorage.getItem("theme");
+  const player = localStorage.getItem("player");
+  const boardSize = localStorage.getItem("boardSize");
+
+  if (theme && player && boardSize) {
+    startBtn.disabled = false;
+  } else {
+    startBtn.disabled = true;
+  }
+}
+
 function updateSummary(name: string, targetId: string) {
   document.querySelectorAll(`input[name="${name}"]`).forEach((input) => {
     input.addEventListener("change", (e) => {
       const target = e.target as HTMLInputElement;
       const label = document.querySelector(`label[for="${target.id}"]`);
-      const text = label?.textContent || "";
-
-      document.getElementById(targetId)!.textContent = text;
-
+      document.getElementById(targetId)!.textContent = label?.textContent || "";
       localStorage.setItem(name, target.value);
+
+      checkAllSelected();
     });
   });
 }
