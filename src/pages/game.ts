@@ -1,5 +1,5 @@
-const boardSize = localStorage.getItem('boardSize');
-const theme = localStorage.getItem('theme');
+const boardSize = localStorage.getItem("boardSize");
+const theme = localStorage.getItem("theme");
 
 const exitBtn = document.querySelector(".exit-btn");
 const popupOverlay = document.querySelector(".popup-overlay");
@@ -9,69 +9,90 @@ const exitGameBtn = document.querySelector(".btn-cold");
 let currentPlayer: "player1" | "player2" = "player1";
 let scores = { player1: 0, player2: 0 };
 
-exitBtn?.addEventListener('click', () => {
-    popupOverlay!.classList.add('active');
+exitBtn?.addEventListener("click", () => {
+  popupOverlay!.classList.add("active");
 });
 
-backToGameBtn?.addEventListener('click', () => {
-    popupOverlay!.classList.remove('active');
+backToGameBtn?.addEventListener("click", () => {
+  popupOverlay!.classList.remove("active");
 });
 
-exitGameBtn?.addEventListener('click', () => {
-    window.location.href = '/src/pages/settings.html';
+exitGameBtn?.addEventListener("click", () => {
+  window.location.href = "/src/pages/settings.html";
 });
 
 const themeImages: Record<string, string[]> = {
-    'theme1': [
-        'git.svg',
-        'typescript.svg',
-        'javascript.svg',
-        'html.svg',
-        'vscode.svg',
-        'css.svg',
-        'django.svg',
-        'angular.svg',
-        'terminal.svg',
-        'python.svg',
-        'github.svg',
-        'nodejs.svg',
-        'bootstrap.svg',
-        'vue.svg',
-        'react.svg',
-        'sass.svg',
-        'database.svg',
-        'firebase.svg',
-    ],
-    'theme2': [
-    ]
+  theme1: [
+    "git.svg",
+    "typescript.svg",
+    "javascript.svg",
+    "html.svg",
+    "vscode.svg",
+    "css.svg",
+    "django.svg",
+    "angular.svg",
+    "terminal.svg",
+    "python.svg",
+    "github.svg",
+    "nodejs.svg",
+    "bootstrap.svg",
+    "vue.svg",
+    "react.svg",
+    "sass.svg",
+    "database.svg",
+    "firebase.svg",
+  ],
+  theme2: [
+    "bowl.svg",
+    "pudding2.svg",
+    "sandwich.svg",
+    "chickenbox.svg",
+    "muffin.svg",
+    "corndogs.svg",
+    "eis.svg",
+    "macron.svg",
+    "schokolade.svg",
+    "taco.svg",
+    "sushi.svg",
+    "brezel.svg",
+    "pizza.svg",
+    "pudding.svg",
+    "wrap.svg",
+    "dount.svg",
+    "burger.svg",
+    "pommes.svg",
+  ],
 };
 
 function getCardCount(): number {
-    switch(boardSize) {
-        case 'size1': return 16;
-        case 'size2': return 24;
-        case 'size3': return 36;
-        default: return 16;
-    }
+  switch (boardSize) {
+    case "size1":
+      return 16;
+    case "size2":
+      return 24;
+    case "size3":
+      return 36;
+    default:
+      return 16;
+  }
 }
 
 function renderBoard() {
-    const board = document.querySelector('.game-board')!;
-    const images = themeImages[theme || 'theme1'];
-    const count = getCardCount();
+  const board = document.querySelector(".game-board")!;
+  const images = themeImages[theme || "theme1"];
+  const count = getCardCount();
 
-    const selected = images.slice(0, count / 2);
-    const cards = [...selected, ...selected]
-        .sort(() => Math.random() - 0.5);
+  const selected = images.slice(0, count / 2);
+  const cards = [...selected, ...selected].sort(() => Math.random() - 0.5);
 
-    board.innerHTML = '';
+  board.innerHTML = "";
 
-    cards.forEach(img => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.dataset.cardId = img;
+  cards.forEach((img) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.dataset.cardId = img;
 
-        card.innerHTML = `
+    card.innerHTML = `
             <div class="card__inner">
                 <div class="card__face card__face--front">
                     <img src="/assets/cards/${img}" alt="">
@@ -82,27 +103,27 @@ function renderBoard() {
             </div>
         `;
 
-        card.addEventListener('click', () => handleCardClick(card));
-        board.appendChild(card);
-    });
+    card.addEventListener("click", () => handleCardClick(card));
+    board.appendChild(card);
+  });
 
-    board.classList.add(`size-${count}`);
+  board.classList.add(`size-${count}`);
 }
 
 let flippedCards: HTMLElement[] = [];
 let lockBoard = false;
 
 function handleCardClick(card: HTMLElement) {
-    if (lockBoard) return;
-    if (card.classList.contains('is-flipped')) return;
-    if (card.classList.contains('is-matched')) return;
+  if (lockBoard) return;
+  if (card.classList.contains("is-flipped")) return;
+  if (card.classList.contains("is-matched")) return;
 
-    card.classList.add('is-flipped');
-    flippedCards.push(card);
+  card.classList.add("is-flipped");
+  flippedCards.push(card);
 
-    if (flippedCards.length === 2) {
-        checkMatch();
-    }
+  if (flippedCards.length === 2) {
+    checkMatch();
+  }
 }
 
 function updateScoreDisplay() {
@@ -161,8 +182,8 @@ function checkGameOver() {
 }
 
 function resetFlipped() {
-    flippedCards = [];
-    lockBoard = false;
+  flippedCards = [];
+  lockBoard = false;
 }
 
 renderBoard();

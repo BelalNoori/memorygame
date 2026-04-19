@@ -1,7 +1,17 @@
+export{};
+
 localStorage.removeItem("theme");
 localStorage.removeItem("player");
 localStorage.removeItem("boardSize");
 
+const themeImages: Record<string, string> = {
+  default: "/assets/Memory.svg",
+  theme1: "/assets/ThemeVisualVibe.svg",
+  theme2: "/assets/foodstheme.svg",
+};
+
+const preview = document.querySelector(".theme-review img") as HTMLImageElement;
+if (preview) preview.src = themeImages["default"];
 const startBtn = document.querySelector(".btn-option") as HTMLButtonElement;
 startBtn.disabled = true;
 
@@ -24,6 +34,13 @@ function updateSummary(name: string, targetId: string) {
       const label = document.querySelector(`label[for="${target.id}"]`);
       document.getElementById(targetId)!.textContent = label?.textContent || "";
       localStorage.setItem(name, target.value);
+
+      if (name === "theme") {
+        const preview = document.querySelector(
+          ".theme-review img",
+        ) as HTMLImageElement;
+        if (preview) preview.src = themeImages[target.value];
+      }
 
       checkAllSelected();
     });
