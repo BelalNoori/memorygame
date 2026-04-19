@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/styles/result.scss">
+    <title>Result | Memory</title>
+</head>
+
+<body>
+
+    <div class="gameover-main">
+        <img src="/assets/game over.svg" alt="">
+        <div class="gameover-screen">
+            <div class="final-score">
+                <span class="score-label">Final score</span>
+                <div class="score-board">
+                    <div class="labelss">
+                        <img class="labels" src="/assets/labelB.svg" alt="player blue">
+                        <span class="playerblue">Blue 0</span>
+                    </div>
+                    <div class="labelss">
+                        <img class="labels" src="/assets/labelO.svg" alt="player orange">
+                        <span class="playerorange">Orange 6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="winner-screen">
+        <img src="/assets/Confetti.svg" alt="">
+        <div class="winner-content">
+            <div class="mh">
+                <span class="winner-label">The winner is</span>
+                <h2 class="winner-name">ORANGE PLAYER</h2>
+            </div>
+            <img class="winner-icon" src="/assets/chess_pawn_orange.svg" alt="winner">
+            <button class="back-btn">Back to start</button>
+        </div>
+    </div>
+
+    <script type="module" src="/src/pages/result.ts"></script>
+</body>
+
+</html>

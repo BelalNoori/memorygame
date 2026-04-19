@@ -6,17 +6,17 @@ const popupOverlay = document.querySelector(".popup-overlay");
 const backToGameBtn = document.querySelector(".btnn");
 const exitGameBtn = document.querySelector(".btn-cold");
 
-// Popup öffnen
+let currentPlayer: "player1" | "player2" = "player1";
+let scores = { player1: 0, player2: 0 };
+
 exitBtn?.addEventListener('click', () => {
     popupOverlay!.classList.add('active');
 });
 
-// Zurück zum Spiel
 backToGameBtn?.addEventListener('click', () => {
     popupOverlay!.classList.remove('active');
 });
 
-// Zurück zu Settings
 exitGameBtn?.addEventListener('click', () => {
     window.location.href = '/src/pages/settings.html';
 });
@@ -105,21 +105,59 @@ function handleCardClick(card: HTMLElement) {
     }
 }
 
-function checkMatch() {
-    lockBoard = true;
-    const [card1, card2] = flippedCards;
+function updateScoreDisplay() {
+  const playerone = document.querySelector(".playerone");
+  const playertwo = document.querySelector(".playertwo");
+  if (playerone) playerone.textContent = `Blue ${scores.player1}`;
+  if (playertwo) playertwo.textContent = `Orange ${scores.player2}`;
+}
 
-    if (card1.dataset.cardId === card2.dataset.cardId) {
-        card1.classList.add('is-matched');
-        card2.classList.add('is-matched');
-        resetFlipped();
-    } else {
-        setTimeout(() => {
-            card1.classList.remove('is-flipped');
-            card2.classList.remove('is-flipped');
-            resetFlipped();
-        }, 1000);
-    }
+function updateCurrentPlayerDisplay() {
+  const playerIcon = document.querySelector(
+    ".current-player img",
+  ) as HTMLImageElement;
+  if (playerIcon) {
+    playerIcon.src =
+      currentPlayer === "player1" ? "/assets/labelB.svg" : "/assets/labelO.svg";
+  }
+}
+
+function switchPlayer() {
+  currentPlayer = currentPlayer === "player1" ? "player2" : "player1";
+  updateCurrentPlayerDisplay();
+}
+
+function checkMatch() {
+  lockBoard = true;
+  const [card1, card2] = flippedCards;
+
+  if (card1.dataset.cardId === card2.dataset.cardId) {
+    card1.classList.add("is-matched");
+    card2.classList.add("is-matched");
+
+    scores[currentPlayer]++;
+    updateScoreDisplay();
+    resetFlipped();
+    checkGameOver();
+  } else {
+    setTimeout(() => {
+      card1.classList.remove("is-flipped");
+      card2.classList.remove("is-flipped");
+      switchPlayer();
+      resetFlipped();
+    }, 1000);
+  }
+}
+
+function checkGameOver() {
+  const matched = document.querySelectorAll(".is-matched").length;
+  if (matched === getCardCount()) {
+    localStorage.setItem("score_player1", String(scores.player1));
+    localStorage.setItem("score_player2", String(scores.player2));
+    setTimeout(() => {
+      window.location.href = "/src/pages/result.html";
+    }, 1000);
+  }
 }
 
 function resetFlipped() {
@@ -128,3 +166,5 @@ function resetFlipped() {
 }
 
 renderBoard();
+updateScoreDisplay();
+updateCurrentPlayerDisplay();
