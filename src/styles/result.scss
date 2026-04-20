@@ -1,156 +1,366 @@
 @use './global' as *;
 
 body {
-    background-color: var(--bg-color);
     font-family: 'Red Rose';
 }
 
-.gameover-main {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 124px;
-}
+body.theme1 {
+    background-color: var(--bg-color);
 
-.final-score {
-    width: 324px;
-    height: 118px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    gap: 24px;
-
-    .score-label {
-        font-size: 28px;
-        font-family: 'Red Rose';
-        color: white;
-        line-height: 100%;
-    }
-
-    .score-board {
+    .gameover-main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 32px;
+        flex-direction: column;
+        gap: 124px;
+    }
+
+    .gameover-title {
+        display: none;
+    }
+
+    .final-score {
         width: 324px;
-        height: 62px;
-        background-color: #86E9D633;
-
-        .labelss {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-
-            .playerblue {
-                color: #2BB1FF;
-                font-size: 24px;
-                font-weight: 700;
-                font-family: 'Red Rose';
-            }
-
-            .playerorange {
-                color: #F58E39;
-                font-size: 24px;
-                font-weight: 700;
-                font-family: 'Red Rose';
-            }
-        }
-    }
-}
-
-.winner-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: var(--bg-color);
-
-    opacity: 0;
-    transform: translateY(-30px);
-    transition: opacity 500ms ease-out, transform 500ms ease-out;
-    pointer-events: none;
-
-    &.active {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: all;
-    }
-}
-
-.winner-name {
-    &.blue {
-        color: #2BB1FF;
-    }
-
-    &.orange {
-        color: #F58E39;
-    }
-
-    &.draw {
-        color: white;
-    }
-}
-
-.winner-content {
-    width: 522px;
-    height: 573px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 64px;
-
-    .mh {
+        height: 118px;
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         flex-direction: column;
+        gap: 24px;
 
-        .winner-label {
-            display: flex;
-            font-size: 40px;
+        .score-label {
+            font-size: 28px;
+            font-family: 'Red Rose';
             color: white;
+            line-height: 100%;
         }
 
-        .winner-name {
-            font-size: 60px;
+        .score-board {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            width: 324px;
+            height: 62px;
+            background-color: #86E9D633;
+
+            .food-labels {
+                display: none;
+            }
+
+            .labelss {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                .playerblue {
+                    color: #2BB1FF;
+                    font-size: 24px;
+                    font-weight: 700;
+                    font-family: 'Red Rose';
+                }
+
+                .playerblue-food {
+                    display: none;
+                }
+
+                .playerorange {
+                    color: #F58E39;
+                    font-size: 24px;
+                    font-weight: 700;
+                    font-family: 'Red Rose';
+                }
+
+                .playerorange-food {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .winner-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: var(--bg-color);
+
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: opacity 500ms ease-out, transform 500ms ease-out;
+        pointer-events: none;
+
+        &.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+    }
+
+    .confetti {
+        display: block;
+    }
+
+    .winner-name {
+        &.blue {
+            color: #2BB1FF;
+        }
+
+        &.orange {
+            color: #F58E39;
+        }
+
+        &.draw {
+            color: white;
+        }
+    }
+
+    .winner-content {
+        width: 522px;
+        height: 573px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 64px;
+
+        .mh {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            .winner-label {
+                display: flex;
+                font-size: 40px;
+                color: white;
+            }
+
+            .winner-name {
+                font-size: 60px;
+                font-weight: 700;
+            }
+        }
+
+        .winner-icon {
+            display: block;
+            width: 200px;
+            height: 250px;
+        }
+
+        .winner-icon-food {
+            display: none;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 204px;
+            height: 62px;
+            background-color: #86E9D633;
+            border: 1px solid var(--vibe-theme-color);
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Red Rose';
+
+            &:hover {
+                background-color: #0ee9bd33;
+                filter: drop-shadow(4px 4px 6px var(--vibe-theme-color));
+            }
+        }
+
+        .back-btn-food {
+            display: none;
+        }
+    }
+}
+
+body.theme2 {
+
+    .gameover-main {
+        background-color: #F3832D;
+
+        >img {
+            display: none;
+        }
+    }
+
+    .gameover-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 969px;
+        height: 440px;
+        gap: 104px;
+    }
+
+    .gameover-title {
+        font-size: 130px;
+        color: white;
+        font-family: 'Klee One';
+        filter: drop-shadow(0px 4px 4px #0000004d);
+    }
+
+    .final-score {
+        width: 324px;
+        height: 118px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .score-label {
+        color: white;
+        font-family: 'Klee One';
+        font-size: 42px;
+        font-weight: 600;
+    }
+
+    .score-board {
+        background-color: white;
+        width: 220px;
+        height: 76px;
+
+        .food-labels {
+            display: block;
+        }
+
+        .labels {
+            display: none;
+        }
+
+        .playerblue,
+        .playerorange {
+            display: none;
+        }
+
+        .playerblue-food {
+            display: block;
+            color: #2BB1FF;
+            font-family: 'Red Rose';
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .playerorange-food {
+            display: block;
+            color: #F58E39;
+            font-family: 'Red Rose';
+            font-size: 40px;
             font-weight: 700;
         }
     }
 
-    .winner-icon {
-        width: 200px;
-        height: 250px;
-    }
-
-    .back-btn {
+    .winner-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 204px;
-        height: 62px;
-        background-color: #86E9D633;
-        border: 1px solid var(--vibe-theme-color);
-        color: white;
-        cursor: pointer;
-        font-size: 24px;
-        font-weight: 700;
-        font-family: 'Red Rose';
+        flex-direction: column;
+        background-color: white;
 
-        &:hover {
-            background-color: #0ee9bd33;
-            filter: drop-shadow(4px 4px 6px var(--vibe-theme-color));
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: opacity 500ms ease-out, transform 500ms ease-out;
+        pointer-events: none;
+
+        &.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+    }
+
+    .confetti {
+        display: none;
+    }
+
+    .winner-name {
+        &.blue {
+            color: #2BB1FF;
+        }
+
+        &.orange {
+            color: #F58E39;
+        }
+
+        &.draw {
+            color: white;
+        }
+    }
+
+    .winner-content {
+        width: 522px;
+        height: 573px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 64px;
+
+        .mh {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            .winner-label {
+                display: flex;
+                font-size: 40px;
+                color: #A45212;
+            }
+
+            .winner-name {
+                font-size: 80px;
+                font-weight: 600;
+                color: #A45212;
+                font-family: 'Klee One';
+            }
+        }
+
+        .winner-icon {
+            width: 200px;
+            height: 250px;
+            display: none;
+        }
+
+        .back-btn {
+            display: none;
+        }
+
+        .back-btn-food {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 97px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background-color: #F3832D;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Delius Unicase';
+
+            &:hover {
+                filter: drop-shadow(4px 4px 6px #913f00);
+            }
         }
     }
 }

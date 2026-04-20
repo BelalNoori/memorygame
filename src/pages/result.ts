@@ -1,10 +1,17 @@
 export {};
 
+const theme = localStorage.getItem("theme");
+document.body.classList.add(theme || "theme1");
 const score1 = parseInt(localStorage.getItem("score_player1") || "0");
 const score2 = parseInt(localStorage.getItem("score_player2") || "0");
 
 const blueScore = document.querySelector(".playerblue");
 const orangeScore = document.querySelector(".playerorange");
+
+const playeroneFood = document.querySelector(".playerblue-food");
+const playtwoFood = document.querySelector(".playerorange-food");
+if (playeroneFood) playeroneFood.textContent = `${score1}`;
+if (playtwoFood) playtwoFood.textContent = `${score2}`;
 
 if (blueScore) blueScore.textContent = `Blue ${score1}`;
 if (orangeScore) orangeScore.textContent = `Orange ${score2}`;
@@ -15,11 +22,14 @@ const winnerScreen = document.querySelector(".winner-screen") as HTMLElement;
 const winnerName = document.querySelector(".winner-name");
 const winnerIcon = document.querySelector(".winner-icon") as HTMLImageElement;
 
-const theme = localStorage.getItem("theme");
-document.body.classList.add(theme || "theme1");
-
 if (winnerName) {
-  winnerName.textContent = `${winner} PLAYER`;
+  const winnerText =
+    winner === "BLUE"
+      ? "Blue Player"
+      : winner === "ORANGE"
+        ? "Orange Player"
+        : "Draw";
+  winnerName.textContent = winnerText;
   winnerName.classList.add(winner.toLowerCase());
 }
 
@@ -32,8 +42,12 @@ if (winnerIcon) {
 
 setTimeout(() => {
   winnerScreen.classList.add("active");
-}, 1200);
+}, 3000);
 
 document.querySelector(".back-btn")?.addEventListener("click", () => {
+  window.location.href = "/";
+});
+
+document.querySelector(".back-btn-food")?.addEventListener("click", () => {
   window.location.href = "/";
 });

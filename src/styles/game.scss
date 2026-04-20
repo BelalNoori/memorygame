@@ -115,6 +115,129 @@ body.theme1 {
             }
         }
     }
+
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        height: 100%;
+
+        &.active {
+            display: flex;
+        }
+
+        .popup-exit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 539px;
+            height: 270px;
+            padding: 40px;
+            background-color: white;
+        }
+    }
+
+    .popup-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 54px;
+        width: 459px;
+        height: 190px;
+
+        .popup-current {
+            line-height: 40px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Red Rose';
+            color: #303131;
+        }
+
+        .popup-btn {
+            display: flex;
+            gap: 24px;
+
+            .btnn {
+                background-color: var(--vibe-theme-color);
+                width: 182px;
+                height: 57px;
+                border: none;
+                color: white;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #66CFBCB2;
+                    border: 3px solid #3ABCA4;
+                }
+            }
+
+            .btn-cold {
+                background-color: #86E9D624;
+                width: 212px;
+                height: 57px;
+                border: none;
+                border: 2px solid var(--vibe-theme-color);
+                color: var(--vibe-theme-color);
+                cursor: pointer;
+            }
+
+            .popup-btn-text {
+                font-size: 26px;
+                font-weight: 700;
+                font-family: 'Red Rose';
+            }
+        }
+    }
+
+    .card {
+        width: 120px;
+        height: 120px;
+        aspect-ratio: 1 / 1;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        &__inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: all 300ms ease-in-out;
+        }
+
+        &__face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            &--front {
+                transform: rotateY(180deg);
+            }
+        }
+
+        &.is-flipped .card__inner {
+            transform: rotateY(180deg);
+        }
+
+        &.is-matched {
+            .card__face--front {
+                border: 5px solid var(--vibe-theme-color);
+                filter: drop-shadow(6px 6px 8px #4dd5bc5e);
+            }
+        }
+    }
 }
 
 body.theme2 {
@@ -234,48 +357,128 @@ body.theme2 {
             font-family: 'Delius Unicase';
         }
     }
-}
 
-.card {
-    width: 120px;
-    height: 120px;
-    aspect-ratio: 1 / 1;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-
-    &__inner {
-        position: relative;
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
         width: 100%;
         height: 100%;
-        transform-style: preserve-3d;
-        transition: all 300ms ease-in-out;
+
+        &.active {
+            display: flex;
+        }
+
+        .popup-exit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 456px;
+            height: 256px;
+            padding: 40px;
+            background-color: white;
+            border-radius: 20px;
+        }
     }
 
-    &__face {
-        position: absolute;
-        inset: 0;
-        backface-visibility: hidden;
+    .popup-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 54px;
+        width: 459px;
+        height: 190px;
 
-        img {
+        .popup-current {
+            width: 376px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 30px;
+            font-family: 'Klee One';
+            color: #A45212;
+        }
+
+        .popup-btn {
+            display: flex;
+            gap: 24px;
+
+            .btnn {
+                background-color: #FFAB3E;
+                width: 182px;
+                height: 57px;
+                border: 3px solid #F3832D;
+                border-radius: 10px;
+                color: white;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #F3832D;
+                    filter: drop-shadow(4px 4px 6px #2F2E2E33);
+                }
+            }
+
+            .btn-cold {
+                background-color: #FFF9F2;
+                width: 212px;
+                height: 57px;
+                border: none;
+                border: 3px solid #F3832D;
+                color: #F3832D;
+                cursor: pointer;
+            }
+
+            .popup-btn-text {
+                font-size: 26px;
+                font-weight: 700;
+                font-family: 'Delius Unicase';
+            }
+        }
+    }
+
+    .card {
+        width: 120px;
+        height: 120px;
+        aspect-ratio: 1 / 1;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        &__inner {
+            position: relative;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            transform-style: preserve-3d;
+            transition: all 300ms ease-in-out;
         }
 
-        &--front {
+        &__face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            &--front {
+                transform: rotateY(180deg);
+            }
+        }
+
+        &.is-flipped .card__inner {
             transform: rotateY(180deg);
         }
-    }
 
-    &.is-flipped .card__inner {
-        transform: rotateY(180deg);
-    }
-
-    &.is-matched {
-        .card__face--front {
-            border: 5px solid var(--vibe-theme-color);
-            filter: drop-shadow(6px 6px 8px #4dd5bc5e);
+        &.is-matched {
+            .card__face--front {
+                border: 4px solid #F3832D;
+            }
         }
     }
 }
@@ -298,84 +501,5 @@ body.theme2 {
 
     &.size-36 {
         grid-template-columns: repeat(6, 120px);
-    }
-}
-
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 100%;
-    height: 100%;
-
-    &.active {
-        display: flex;
-    }
-
-    .popup-exit {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 539px;
-        height: 270px;
-        padding: 40px;
-        background-color: white;
-    }
-}
-
-.popup-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 54px;
-    width: 459px;
-    height: 190px;
-
-    >h2 {
-        line-height: 40px;
-        text-align: center;
-        font-size: 32px;
-        font-weight: 700;
-        font-family: 'Red Rose';
-        color: #303131;
-    }
-
-    .popup-btn {
-        display: flex;
-        gap: 24px;
-
-        .btnn {
-            background-color: var(--vibe-theme-color);
-            width: 182px;
-            height: 57px;
-            border: none;
-            color: white;
-            cursor: pointer;
-
-            &:hover {
-                background-color: #66CFBCB2;
-                border: 3px solid #3ABCA4;
-            }
-        }
-
-        .btn-cold {
-            background-color: #86E9D624;
-            width: 212px;
-            height: 57px;
-            border: none;
-            border: 2px solid var(--vibe-theme-color);
-            color: var(--vibe-theme-color);
-            cursor: pointer;
-        }
-
-        .popup-btn-text {
-            font-size: 26px;
-            font-weight: 700;
-            font-family: 'Red Rose';
-        }
     }
 }
