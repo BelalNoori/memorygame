@@ -49,5 +49,5 @@ document.querySelector(".back-btn")?.addEventListener("click", () => {
 });
 
 document.querySelector(".back-btn-food")?.addEventListener("click", () => {
-  window.location.href = "/";
+    window.location.href = "/";
 });

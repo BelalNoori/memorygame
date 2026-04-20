@@ -188,9 +188,19 @@ body.theme1 {
 }
 
 body.theme2 {
+    background-color: #F3832D;
 
     .gameover-main {
-        background-color: #F3832D;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 124px;
 
         >img {
             display: none;
@@ -217,6 +227,7 @@ body.theme2 {
         width: 324px;
         height: 118px;
         display: flex;
+        align-items: center;
         flex-direction: column;
         gap: 24px;
     }
@@ -230,9 +241,18 @@ body.theme2 {
 
     .score-board {
         background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
         width: 220px;
         height: 76px;
 
+        .labelss {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
         .food-labels {
             display: block;
         }
@@ -247,7 +267,7 @@ body.theme2 {
         }
 
         .playerblue-food {
-            display: block;
+            display: flex;
             color: #2BB1FF;
             font-family: 'Red Rose';
             font-size: 40px;
