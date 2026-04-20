@@ -1,3 +1,5 @@
+export {};
+
 const boardSize = localStorage.getItem("boardSize");
 const theme = localStorage.getItem("theme");
 
@@ -8,6 +10,8 @@ const exitGameBtn = document.querySelector(".btn-cold");
 
 let currentPlayer: "player1" | "player2" = "player1";
 let scores = { player1: 0, player2: 0 };
+
+document.body.classList.add(theme || "theme1");
 
 exitBtn?.addEventListener("click", () => {
   popupOverlay!.classList.add("active");
@@ -82,6 +86,11 @@ function renderBoard() {
   const images = themeImages[theme || "theme1"];
   const count = getCardCount();
 
+  const cardBack =
+    theme === "theme2"
+      ? "/assets/cards/card-back-food.svg"
+      : "/assets/cards/card-back.svg";
+
   const selected = images.slice(0, count / 2);
   const cards = [...selected, ...selected].sort(() => Math.random() - 0.5);
 
@@ -98,7 +107,7 @@ function renderBoard() {
                     <img src="/assets/cards/${img}" alt="">
                 </div>
                 <div class="card__face card__face--back">
-                    <img src="/assets/cards/card-back.svg" alt="">
+                    <img src="${cardBack}" alt="">
                 </div>
             </div>
         `;
@@ -129,14 +138,18 @@ function handleCardClick(card: HTMLElement) {
 function updateScoreDisplay() {
   const playerone = document.querySelector(".playerone");
   const playertwo = document.querySelector(".playertwo");
+  const playeroneFood = document.querySelector(".playerone-food");
+  const playtwoFood = document.querySelector(".playertwo-food");
+
   if (playerone) playerone.textContent = `Blue ${scores.player1}`;
   if (playertwo) playertwo.textContent = `Orange ${scores.player2}`;
+  if (playeroneFood) playeroneFood.textContent = `${scores.player1}`;
+  if (playtwoFood) playtwoFood.textContent = `${scores.player2}`;
 }
 
 function updateCurrentPlayerDisplay() {
-  const playerIcon = document.querySelector(
-    ".current-player img",
-  ) as HTMLImageElement;
+  const playerIcon = document.querySelector(".playericons",) as HTMLImageElement;
+
   if (playerIcon) {
     playerIcon.src =
       currentPlayer === "player1" ? "/assets/labelB.svg" : "/assets/labelO.svg";

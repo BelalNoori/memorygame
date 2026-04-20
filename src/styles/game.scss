@@ -5,7 +5,6 @@ body {
     display: flex;
     justify-content: center;
     padding-top: 40px;
-    background-color: #303131;
 }
 
 .game-container {
@@ -14,54 +13,186 @@ body {
     width: 1217px;
 }
 
-.game-header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+body.theme1 {
+    background-color: #303131;
+
+    .game-header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .player-scores {
+            background-color: #86E9D633;
+            display: flex;
+            justify-content: center;
+            width: 292px;
+            height: 62px;
+            gap: 20px;
+
+            .labelss {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                .playerone-food,
+                .playertwo-food {
+                    display: none;
+                }
+
+                .playerone {
+                    display: block;
+                    color: #2BB1FF;
+                    font-size: 24px;
+                    font-weight: 700;
+                    font-family: 'Red Rose';
+                }
+
+                .playertwo {
+                    display: block;
+                    color: #F58E39;
+                    font-size: 24px;
+                    font-weight: 700;
+                    font-family: 'Red Rose';
+                }
+            }
+
+            .food-labels {
+                display: none;
+                width: 24px;
+            }
+
+            .labels {
+                width: 24px;
+            }
+        }
+
+        .current-player {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .current {
+                font-size: 26px;
+                font-weight: 400;
+                font-family: 'Red Rose';
+                color: white;
+            }
+
+            .fullblueches {
+                display: none;
+            }
+        }
+
+        .exit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 207px;
+            height: 62px;
+            background-color: #86E9D633;
+            border: 1px solid var(--vibe-theme-color);
+            color: white;
+            gap: 10px;
+            cursor: pointer;
+
+            &:hover {
+                border: 3px solid var(--vibe-theme-color);
+                filter: drop-shadow(4px 4px 6px var(--vibe-theme-color));
+            }
+
+            .exit-vibe {
+                display: block;
+            }
+
+            .exit-food {
+                display: none;
+            }
+
+            .exit-text {
+                font-size: 24px;
+                font-weight: 700;
+                font-family: 'Red Rose';
+            }
+        }
+    }
+}
+
+body.theme2 {
+    background-color: white;
+
+    .game-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background-color: #F0E5D9;
+        padding: 24px;
+        border-radius: 10px;
+    }
 
     .player-scores {
-        background-color: #86E9D633;
+        background-color: white;
         display: flex;
         justify-content: center;
-        width: 292px;
-        height: 62px;
-        gap: 20px;
+        width: 159px;
+        height: 54px;
+        gap: 40px;
+        border-radius: 10px;
 
         .labelss {
             display: flex;
             align-items: center;
             gap: 4px;
 
-            .playerone {
-                color: #2BB1FF;
-                font-size: 24px;
-                font-weight: 700;
-                font-family: 'Red Rose';
+            .playerone,
+            .playertwo {
+                display: none;
             }
 
-            .playertwo {
-                color: #F58E39;
-                font-size: 24px;
+            .playerone-food {
+                display: block;
+                color: #2BB1FF;
+                font-size: 30px;
                 font-weight: 700;
-                font-family: 'Red Rose';
+                font-family: 'Delius Unicase';
+            }
+
+            .playertwo-food {
+                display: block;
+                color: #F58E39;
+                font-size: 30px;
+                font-weight: 700;
+                font-family: 'Delius Unicase';
             }
         }
 
+        .food-labels {
+            width: 20px;
+        }
+
         .labels {
-            width: 24px;
+            display: none;
         }
     }
 
     .current-player {
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         gap: 8px;
 
         .current {
-            font-size: 26px;
-            font-weight: 400;
-            font-family: 'Red Rose';
-            color: white;
+            font-size: 32px;
+            color: #A45212;
+            font-family: 'Klee One';
+        }
+
+        .playericons {
+            display: none;
+        }
+
+        .fullblueches {
+            display: block;
+            width: 41px;
         }
     }
 
@@ -69,27 +200,38 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 207px;
-        height: 62px;
-        background-color: #86E9D633;
-        border: 1px solid var(--vibe-theme-color);
-        color: white;
+        width: 173px;
+        height: 46px;
+        background-color: #FFF9F2;
+        border: 3px solid #F3832D;
+        color: #F3832D;
         gap: 10px;
+        border-radius: 10px;
         cursor: pointer;
 
         &:hover {
-            border: 3px solid var(--vibe-theme-color);
-            filter: drop-shadow(4px 4px 6px var(--vibe-theme-color));
+            background-color: #F3832D;
+            filter: drop-shadow(4px 4px 6px #2F2E2E33);
+            color: white;
+
+            .exit-food {
+                filter: brightness(0) invert(1);
+            }
         }
 
-        img {
-            width: 30px;
+        .exit-vibe {
+            display: none;
+        }
+
+        .exit-food {
+            display: block;
         }
 
         .exit-text {
             font-size: 24px;
             font-weight: 700;
             font-family: 'Red Rose';
+            font-family: 'Delius Unicase';
         }
     }
 }
@@ -129,7 +271,7 @@ body {
     &.is-flipped .card__inner {
         transform: rotateY(180deg);
     }
-    
+
     &.is-matched {
         .card__face--front {
             border: 5px solid var(--vibe-theme-color);

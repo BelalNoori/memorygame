@@ -1,3 +1,5 @@
+export {};
+
 const score1 = parseInt(localStorage.getItem("score_player1") || "0");
 const score2 = parseInt(localStorage.getItem("score_player2") || "0");
 
@@ -12,6 +14,9 @@ const winner = score1 > score2 ? "BLUE" : score2 > score1 ? "ORANGE" : "DRAW";
 const winnerScreen = document.querySelector(".winner-screen") as HTMLElement;
 const winnerName = document.querySelector(".winner-name");
 const winnerIcon = document.querySelector(".winner-icon") as HTMLImageElement;
+
+const theme = localStorage.getItem("theme");
+document.body.classList.add(theme || "theme1");
 
 if (winnerName) {
   winnerName.textContent = `${winner} PLAYER`;

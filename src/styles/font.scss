@@ -1,4 +1,3 @@
-/* almarai-300 - latin */
 @font-face {
     font-display: swap;
     font-family: 'Almarai';
@@ -7,7 +6,6 @@
     src: url('/fonts/almarai-v19-latin-300.woff2') format('woff2');
 }
 
-/* almarai-regular - latin */
 @font-face {
     font-display: swap;
     font-family: 'Almarai';
@@ -16,7 +14,6 @@
     src: url('/fonts/almarai-v19-latin-regular.woff2') format('woff2');
 }
 
-/* almarai-700 - latin */
 @font-face {
     font-display: swap;
     font-family: 'Almarai';
@@ -25,7 +22,6 @@
     src: url('/fonts/almarai-v19-latin-700.woff2') format('woff2');
 }
 
-/* almarai-800 - latin */
 @font-face {
     font-display: swap;
     font-family: 'Almarai';
@@ -34,7 +30,6 @@
     src: url('/fonts/almarai-v19-latin-800.woff2') format('woff2');
 }
 
-/* red-rose-300 - latin */
 @font-face {
     font-display: swap;
     font-family: 'Red Rose';
@@ -43,7 +38,6 @@
     src: url('/fonts/red-rose-v25-latin-300.woff2') format('woff2');
 }
 
-/* red-rose-regular - latin */
 @font-face {
     font-display: swap;
     font-family: 'Red Rose';
@@ -52,7 +46,6 @@
     src: url('/fonts/red-rose-v25-latin-regular.woff2') format('woff2');
 }
 
-/* red-rose-500 - latin */
 @font-face {
     font-display: swap;
     font-family: 'Red Rose';
@@ -61,7 +54,6 @@
     src: url('/fonts/red-rose-v25-latin-500.woff2') format('woff2');
 }
 
-/* red-rose-600 - latin */
 @font-face {
     font-display: swap;
     font-family: 'Red Rose';
@@ -70,11 +62,42 @@
     src: url('/fonts/red-rose-v25-latin-600.woff2') format('woff2');
 }
 
-/* red-rose-700 - latin */
 @font-face {
     font-display: swap;
     font-family: 'Red Rose';
     font-style: normal;
     font-weight: 700;
     src: url('/fonts/red-rose-v25-latin-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Delius Unicase';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/delius-unicase-v30-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Delius Unicase';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/delius-unicase-v30-latin-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Klee One';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/klee-one-v13-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Klee One';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/fonts/klee-one-v13-latin-600.woff2') format('woff2');
 }
