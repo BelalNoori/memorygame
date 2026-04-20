@@ -4,6 +4,16 @@ body {
     font-family: 'Red Rose';
 }
 
+.winner-screen {
+    opacity: 0 !important;
+    pointer-events: none;
+
+    &.active {
+        opacity: 1 !important;
+        pointer-events: all;
+    }
+}
+
 body.theme1 {
     background-color: var(--bg-color);
 
@@ -253,6 +263,7 @@ body.theme2 {
             gap: 4px;
             align-items: center;
         }
+
         .food-labels {
             display: block;
         }
