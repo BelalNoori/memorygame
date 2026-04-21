@@ -36,12 +36,9 @@ function updateSummary(name: string, targetId: string) {
       localStorage.setItem(name, target.value);
 
       if (name === "theme") {
-        const preview = document.querySelector(
-          ".theme-review img",
-        ) as HTMLImageElement;
+        const preview = document.querySelector(".theme-review img",) as HTMLImageElement;
         if (preview) preview.src = themeImages[target.value];
       }
-
       checkAllSelected();
     });
   });

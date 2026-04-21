@@ -1,5 +1,7 @@
 export {};
 
+import { createCardHTML } from '../ts/cardTemplate';
+
 const boardSize = localStorage.getItem("boardSize");
 const theme = localStorage.getItem("theme");
 
@@ -85,37 +87,19 @@ function renderBoard() {
   const board = document.querySelector(".game-board")!;
   const images = themeImages[theme || "theme1"];
   const count = getCardCount();
-
-  const cardBack =
-    theme === "theme2"
-      ? "/assets/cards/card-back-food.svg"
-      : "/assets/cards/card-back.svg";
-
+  const cardBack = theme === "theme2" ? "/assets/cards/card-back-food.svg": "/assets/cards/card-back.svg";
   const selected = images.slice(0, count / 2);
   const cards = [...selected, ...selected].sort(() => Math.random() - 0.5);
 
   board.innerHTML = "";
-
   cards.forEach((img) => {
     const card = document.createElement("div");
     card.classList.add("card");
     card.dataset.cardId = img;
-
-    card.innerHTML = `
-            <div class="card__inner">
-                <div class="card__face card__face--front">
-                    <img src="/assets/cards/${img}" alt="">
-                </div>
-                <div class="card__face card__face--back">
-                    <img src="${cardBack}" alt="">
-                </div>
-            </div>
-        `;
-
+    card.innerHTML = createCardHTML(img, cardBack);
     card.addEventListener("click", () => handleCardClick(card));
     board.appendChild(card);
   });
-
   board.classList.add(`size-${count}`);
 }
 
@@ -152,15 +136,11 @@ function updateCurrentPlayerDisplay() {
   const fulliBg = document.querySelector(".fullto") as HTMLElement;
 
   if (playerIcon) {
-    playerIcon.src =
-      currentPlayer === "player1" ? "/assets/labelB.svg" : "/assets/labelO.svg";
+    playerIcon.src = currentPlayer === "player1" ? "/assets/labelB.svg" : "/assets/labelO.svg";
   }
 
   if (fulliBg) {
-    fulliBg.style.backgroundColor =
-      currentPlayer === "player1"
-        ? "#097FC5" // ← blau
-        : "#F58E39"; // ← orange
+    fulliBg.style.backgroundColor = currentPlayer === "player1" ? "#097FC5": "#F58E39";
   }
 }
 
@@ -169,14 +149,10 @@ function switchPlayer() {
   updateCurrentPlayerDisplay();
 }
 
-function checkMatch() {
-  lockBoard = true;
+function checkMatch() { lockBoard = true;
   const [card1, card2] = flippedCards;
 
-  if (card1.dataset.cardId === card2.dataset.cardId) {
-    card1.classList.add("is-matched");
-    card2.classList.add("is-matched");
-
+  if (card1.dataset.cardId === card2.dataset.cardId) {card1.classList.add("is-matched"); card2.classList.add("is-matched");
     scores[currentPlayer]++;
     updateScoreDisplay();
     resetFlipped();

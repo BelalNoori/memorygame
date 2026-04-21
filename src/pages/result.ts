@@ -50,9 +50,6 @@ if (winnerIconFood) {
       : "/assets/PlayerillustrationOrange.svg";
 }
 
-console.log('winner:', winner);
-console.log('winnerIconFood:', document.querySelector(".winner-icon-food"));
-
 setTimeout(() => {
   winnerScreen.classList.add("active");
 }, 3000);
