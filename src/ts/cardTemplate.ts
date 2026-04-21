@@ -1,3 +1,6 @@
+// Returns the HTML string for a single card with front and back face.
+// Takes the image filename and card back path as parameters.
+
 export function createCardHTML(img: string, cardBack: string): string {
     return `
         <div class="card__inner">

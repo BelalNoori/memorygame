@@ -1,5 +1,7 @@
 export{};
 
+// Clears localStorage on page load so no old settings carry over. 
+// Sets the default preview image and disables the start button.
 localStorage.removeItem("theme");
 localStorage.removeItem("player");
 localStorage.removeItem("boardSize");
@@ -15,6 +17,7 @@ if (preview) preview.src = themeImages["default"];
 const startBtn = document.querySelector(".btn-option") as HTMLButtonElement;
 startBtn.disabled = true;
 
+// Checks if all three settings (theme, player, boardSize) are selected in localStorage.
 function checkAllSelected() {
   const theme = localStorage.getItem("theme");
   const player = localStorage.getItem("player");
@@ -27,6 +30,8 @@ function checkAllSelected() {
   }
 }
 
+// checkAllSelected is call, when the Listens for radio button changes and
+// update the summary. Like bar text and preview images. 
 function updateSummary(name: string, targetId: string) {
   document.querySelectorAll(`input[name="${name}"]`).forEach((input) => {
     input.addEventListener("change", (e) => {

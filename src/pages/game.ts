@@ -70,6 +70,7 @@ const themeImages: Record<string, string[]> = {
   ],
 };
 
+// Card size 16, 24 and 36
 function getCardCount(): number {
   switch (boardSize) {
     case "size1":
@@ -83,6 +84,8 @@ function getCardCount(): number {
   }
 }
 
+// Dynamically creates the game board – fetches the correct images based on the selected theme, 
+// creates pairs, shuffles them randomly and appends the cards to the DOM.
 function renderBoard() {
   const board = document.querySelector(".game-board")!;
   const images = themeImages[theme || "theme1"];
@@ -106,6 +109,9 @@ function renderBoard() {
 let flippedCards: HTMLElement[] = [];
 let lockBoard = false;
 
+// Executes when a card is clicked. Checks if the board is locked, 
+// if the card is already flipped or matched.
+// Adds is-flipped and calls checkMatch when 2 cards are flipped.
 function handleCardClick(card: HTMLElement) {
   if (lockBoard) return;
   if (card.classList.contains("is-flipped")) return;
@@ -119,6 +125,7 @@ function handleCardClick(card: HTMLElement) {
   }
 }
 
+// Updates the score display in the header for both players.
 function updateScoreDisplay() {
   const playerone = document.querySelector(".playerone");
   const playertwo = document.querySelector(".playertwo");
@@ -131,6 +138,7 @@ function updateScoreDisplay() {
   if (playtwoFood) playtwoFood.textContent = `${scores.player2}`;
 }
 
+// Switches the icon/color in the header depending on whose turn it is.
 function updateCurrentPlayerDisplay() {
   const playerIcon = document.querySelector(".playericons") as HTMLImageElement;
   const fulliBg = document.querySelector(".fullto") as HTMLElement;
@@ -144,11 +152,15 @@ function updateCurrentPlayerDisplay() {
   }
 }
 
+// Toggles currentPlayer between player1 and player2 and calls updateCurrentPlayerDisplay.
 function switchPlayer() {
   currentPlayer = currentPlayer === "player1" ? "player2" : "player1";
   updateCurrentPlayerDisplay();
 }
 
+// Compares the data-cardId of the two flipped cards. 
+// On match, both get is-matched, score increases, checkGameOver is called. 
+// On no match, after 1 second both cards flip back and the player switches.
 function checkMatch() { lockBoard = true;
   const [card1, card2] = flippedCards;
 
@@ -167,6 +179,7 @@ function checkMatch() { lockBoard = true;
   }
 }
 
+// Counts all matched cards. If all are matched → saves scores to localStorage.
 function checkGameOver() {
   const matched = document.querySelectorAll(".is-matched").length;
   if (matched === getCardCount()) {
@@ -178,6 +191,7 @@ function checkGameOver() {
   }
 }
 
+// Clears the flippedCards array and unlocks the board for the player. 
 function resetFlipped() {
   flippedCards = [];
   lockBoard = false;
