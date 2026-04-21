@@ -148,11 +148,19 @@ function updateScoreDisplay() {
 }
 
 function updateCurrentPlayerDisplay() {
-  const playerIcon = document.querySelector(".playericons",) as HTMLImageElement;
+  const playerIcon = document.querySelector(".playericons") as HTMLImageElement;
+  const fulliBg = document.querySelector(".fullto") as HTMLElement;
 
   if (playerIcon) {
     playerIcon.src =
       currentPlayer === "player1" ? "/assets/labelB.svg" : "/assets/labelO.svg";
+  }
+
+  if (fulliBg) {
+    fulliBg.style.backgroundColor =
+      currentPlayer === "player1"
+        ? "#097FC5" // ← blau
+        : "#F58E39"; // ← orange
   }
 }
 

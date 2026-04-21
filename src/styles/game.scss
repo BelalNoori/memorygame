@@ -78,7 +78,7 @@ body.theme1 {
                 color: white;
             }
 
-            .fullblueches {
+            .fullto {
                 display: none;
             }
         }
@@ -300,7 +300,6 @@ body.theme2 {
 
     .current-player {
         display: flex;
-        align-items: center;
         gap: 8px;
 
         .current {
@@ -313,9 +312,20 @@ body.theme2 {
             display: none;
         }
 
-        .fullblueches {
-            display: block;
+        .fullto {
+            position: relative;
+            background-color: #097FC5;
             width: 41px;
+            height: 40px;
+            border-radius: 8px;
+
+            .chesswitch {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 24px;
+            }
         }
     }
 

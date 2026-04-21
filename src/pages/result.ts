@@ -21,6 +21,9 @@ const winner = score1 > score2 ? "BLUE" : score2 > score1 ? "ORANGE" : "DRAW";
 const winnerScreen = document.querySelector(".winner-screen") as HTMLElement;
 const winnerName = document.querySelector(".winner-name");
 const winnerIcon = document.querySelector(".winner-icon") as HTMLImageElement;
+const winnerIconFood = document.querySelector(
+  ".winner-icon-food",
+) as HTMLImageElement;
 
 if (winnerName) {
   const winnerText =
@@ -40,6 +43,16 @@ if (winnerIcon) {
       : "/assets/chess_pawn_orange.svg";
 }
 
+if (winnerIconFood) {
+  winnerIconFood.src =
+    winner === "BLUE"
+      ? "/assets/PlayerillustrationBlue.svg"
+      : "/assets/PlayerillustrationOrange.svg";
+}
+
+console.log('winner:', winner);
+console.log('winnerIconFood:', document.querySelector(".winner-icon-food"));
+
 setTimeout(() => {
   winnerScreen.classList.add("active");
 }, 3000);
@@ -49,5 +62,5 @@ document.querySelector(".back-btn")?.addEventListener("click", () => {
 });
 
 document.querySelector(".back-btn-food")?.addEventListener("click", () => {
-    window.location.href = "/";
+  window.location.href = "/";
 });
