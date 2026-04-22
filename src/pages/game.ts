@@ -70,7 +70,6 @@ const themeImages: Record<string, string[]> = {
   ],
 };
 
-// Card size 16, 24 and 36
 function getCardCount(): number {
   switch (boardSize) {
     case "size1":
@@ -84,9 +83,10 @@ function getCardCount(): number {
   }
 }
 
-// Dynamically creates the game board – fetches the correct images based on the selected theme, 
-// creates pairs, shuffles them randomly and appends the cards to the DOM.
-function renderBoard() {
+/**
+ * Renders the game board with shuffled card pairs based on selected theme and board size
+ */
+function renderBoard(): void {
   const board = document.querySelector(".game-board")!;
   const images = themeImages[theme || "theme1"];
   const count = getCardCount();
@@ -109,10 +109,11 @@ function renderBoard() {
 let flippedCards: HTMLElement[] = [];
 let lockBoard = false;
 
-// Executes when a card is clicked. Checks if the board is locked, 
-// if the card is already flipped or matched.
-// Adds is-flipped and calls checkMatch when 2 cards are flipped.
-function handleCardClick(card: HTMLElement) {
+/**
+ * Handles card click event - flips card and triggers match check when 2 cards are flipped
+ * @param card - The clicked card HTML element
+ */
+function handleCardClick(card: HTMLElement): void {
   if (lockBoard) return;
   if (card.classList.contains("is-flipped")) return;
   if (card.classList.contains("is-matched")) return;
@@ -124,9 +125,10 @@ function handleCardClick(card: HTMLElement) {
     checkMatch();
   }
 }
-
-// Updates the score display in the header for both players.
-function updateScoreDisplay() {
+/**
+ * Updates the score display in the header for both players
+ */
+function updateScoreDisplay(): void {
   const playerone = document.querySelector(".playerone");
   const playertwo = document.querySelector(".playertwo");
   const playeroneFood = document.querySelector(".playerone-food");
@@ -138,8 +140,10 @@ function updateScoreDisplay() {
   if (playtwoFood) playtwoFood.textContent = `${scores.player2}`;
 }
 
-// Switches the icon/color in the header depending on whose turn it is.
-function updateCurrentPlayerDisplay() {
+/**
+ * Updates the current player icon and color indicator in the header
+ */
+function updateCurrentPlayerDisplay(): void {
   const playerIcon = document.querySelector(".playericons") as HTMLImageElement;
   const fulliBg = document.querySelector(".fullto") as HTMLElement;
 
@@ -152,16 +156,19 @@ function updateCurrentPlayerDisplay() {
   }
 }
 
-// Toggles currentPlayer between player1 and player2 and calls updateCurrentPlayerDisplay.
-function switchPlayer() {
+/**
+ * Switches the active player and updates the display
+ */
+function switchPlayer(): void {
   currentPlayer = currentPlayer === "player1" ? "player2" : "player1";
   updateCurrentPlayerDisplay();
 }
 
-// Compares the data-cardId of the two flipped cards. 
-// On match, both get is-matched, score increases, checkGameOver is called. 
-// On no match, after 1 second both cards flip back and the player switches.
-function checkMatch() { lockBoard = true;
+/**
+ * Compares two flipped cards - handles match and no-match logic
+ */
+function checkMatch(): void 
+{ lockBoard = true;
   const [card1, card2] = flippedCards;
 
   if (card1.dataset.cardId === card2.dataset.cardId) {card1.classList.add("is-matched"); card2.classList.add("is-matched");
@@ -179,8 +186,10 @@ function checkMatch() { lockBoard = true;
   }
 }
 
-// Counts all matched cards. If all are matched → saves scores to localStorage.
-function checkGameOver() {
+/**
+ * Checks if all cards are matched and navigates to result page
+ */
+function checkGameOver(): void {
   const matched = document.querySelectorAll(".is-matched").length;
   if (matched === getCardCount()) {
     localStorage.setItem("score_player1", String(scores.player1));
@@ -191,8 +200,10 @@ function checkGameOver() {
   }
 }
 
-// Clears the flippedCards array and unlocks the board for the player. 
-function resetFlipped() {
+/**
+ * Resets the flipped cards array and unlocks the board after each turn
+ */
+function resetFlipped(): void {
   flippedCards = [];
   lockBoard = false;
 }

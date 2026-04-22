@@ -1,7 +1,5 @@
 export{};
 
-// Clears localStorage on page load so no old settings carry over. 
-// Sets the default preview image and disables the start button.
 localStorage.removeItem("theme");
 localStorage.removeItem("player");
 localStorage.removeItem("boardSize");
@@ -17,8 +15,10 @@ if (preview) preview.src = themeImages["default"];
 const startBtn = document.querySelector(".btn-option") as HTMLButtonElement;
 startBtn.disabled = true;
 
-// Checks if all three settings (theme, player, boardSize) are selected in localStorage.
-function checkAllSelected() {
+/**
+ * Checks if all settings are selected and enables/disables the start button
+ */
+function checkAllSelected(): void {
   const theme = localStorage.getItem("theme");
   const player = localStorage.getItem("player");
   const boardSize = localStorage.getItem("boardSize");
@@ -30,9 +30,12 @@ function checkAllSelected() {
   }
 }
 
-// checkAllSelected is call, when the Listens for radio button changes and
-// update the summary. Like bar text and preview images. 
-function updateSummary(name: string, targetId: string) {
+/**
+ * Listens for radio input changes and updates summary bar, localStorage and theme preview
+ * @param name - The input name attribute (theme/player/boardSize)
+ * @param targetId - The ID of the summary element to update
+ */
+function updateSummary(name: string, targetId: string): void {
   document.querySelectorAll(`input[name="${name}"]`).forEach((input) => {
     input.addEventListener("change", (e) => {
       const target = e.target as HTMLInputElement;
@@ -64,4 +67,23 @@ document.querySelector(".btn-option")?.addEventListener("click", () => {
   }
 
   window.location.href = "/src/pages/game.html";
+});
+
+document.querySelectorAll('input[name="theme"]').forEach((input) => {
+  const label = document.querySelector(
+    `label[for="${(input as HTMLInputElement).id}"]`,
+  );
+
+  label?.addEventListener("mouseover", () => {
+    const value = (input as HTMLInputElement).value;
+    if (preview) preview.src = themeImages[value];
+  });
+
+  label?.addEventListener("mouseleave", () => {
+    const selectedTheme = localStorage.getItem("theme");
+    if (preview)
+      preview.src = selectedTheme
+        ? themeImages[selectedTheme]
+        : themeImages["default"];
+  });
 });

@@ -2,8 +2,10 @@ import './styles/style.scss'
 
 init()
 
-// Sets up a click listener on the field element. Toggles the is-flipped class on a card when clicked.
-function init(){
+/**
+ * Initializes click listener on the game field for card flipping
+ */
+function init(): void {
     const fieldRef = document.getElementById("field");
     if (fieldRef) {
         fieldRef.addEventListener("click", e => {
@@ -15,7 +17,6 @@ function init(){
     }
 }
 
-// Navigate to the settings.
 const playBtn = document.querySelector('.play-start');
 playBtn?.addEventListener('click', () => {
     window.location.href = '/src/pages/settings.html';

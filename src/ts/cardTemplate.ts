@@ -1,6 +1,9 @@
-// Returns the HTML string for a single card with front and back face.
-// Takes the image filename and card back path as parameters.
-
+/**
+ * Creates and returns the HTML string for a single memory card
+ * @param img - The image filename for the card front
+ * @param cardBack - The path to the card back image
+ * @returns HTML string with card inner structure
+ */
 export function createCardHTML(img: string, cardBack: string): string {
     return `
         <div class="card__inner">
