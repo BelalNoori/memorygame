@@ -1,63 +1,114 @@
-export {};
+const THEME: string | null = localStorage.getItem("theme");
+const BLUE_PLAYER_SCORE: number = parseInt(
+  localStorage.getItem("score_player1") || "0",
+);
+const ORANGE_PLAYER_SCORE: number = parseInt(
+  localStorage.getItem("score_player2") || "0",
+);
+const WINNER: string =
+  BLUE_PLAYER_SCORE > ORANGE_PLAYER_SCORE
+    ? "BLUE"
+    : ORANGE_PLAYER_SCORE > BLUE_PLAYER_SCORE
+      ? "ORANGE"
+      : "DRAW";
+const WINNER_SCREEN_DELAY: number = 3000;
 
-const theme = localStorage.getItem("theme");
-document.body.classList.add(theme || "theme1");
-const score1 = parseInt(localStorage.getItem("score_player1") || "0");
-const score2 = parseInt(localStorage.getItem("score_player2") || "0");
-
-const blueScore = document.querySelector(".playerblue");
-const orangeScore = document.querySelector(".playerorange");
-
-const playeroneFood = document.querySelector(".playerblue-food");
-const playtwoFood = document.querySelector(".playerorange-food");
-if (playeroneFood) playeroneFood.textContent = `${score1}`;
-if (playtwoFood) playtwoFood.textContent = `${score2}`;
-
-if (blueScore) blueScore.textContent = `Blue ${score1}`;
-if (orangeScore) orangeScore.textContent = `Orange ${score2}`;
-
-const winner = score1 > score2 ? "BLUE" : score2 > score1 ? "ORANGE" : "DRAW";
-
-const winnerScreen = document.querySelector(".winner-screen") as HTMLElement;
-const winnerName = document.querySelector(".winner-name");
-const winnerIcon = document.querySelector(".winner-icon") as HTMLImageElement;
-const winnerIconFood = document.querySelector(
+const WINNER_SCREEN = document.querySelector(".winner-screen") as HTMLElement;
+const WINNER_NAME: Element | null = document.querySelector(".winner-name");
+const WINNER_ICON = document.querySelector(".winner-icon") as HTMLImageElement;
+const WINNER_ICON_FOOD = document.querySelector(
   ".winner-icon-food",
 ) as HTMLImageElement;
 
-if (winnerName) {
-  const winnerText =
-    winner === "BLUE"
-      ? "Blue Player"
-      : winner === "ORANGE"
-        ? "Orange Player"
-        : "Draw";
-  winnerName.textContent = winnerText;
-  winnerName.classList.add(winner.toLowerCase());
+/**
+ * Initializes result page - sets theme, scores, winner and event listeners
+ */
+function init(): void {
+  document.body.classList.add(THEME || "theme1");
+  updateScoreDisplay();
+  updateWinnerDisplay();
+  showWinnerScreen();
+  initEventListeners();
 }
 
-if (winnerIcon) {
-  winnerIcon.src =
-    winner === "BLUE"
-      ? "/assets/chess_pawn_blue.svg"
-      : "/assets/chess_pawn_orange.svg";
+/**
+ * Updates score display for both players
+ */
+function updateScoreDisplay(): void {
+  const blueScore: Element | null = document.querySelector(".playerblue");
+  const orangeScore: Element | null = document.querySelector(".playerorange");
+  const blueScoreFood: Element | null =
+    document.querySelector(".playerblue-food");
+  const orangeScoreFood: Element | null =
+    document.querySelector(".playerorange-food");
+
+  if (blueScore) blueScore.textContent = `Blue ${BLUE_PLAYER_SCORE}`;
+  if (orangeScore) orangeScore.textContent = `Orange ${ORANGE_PLAYER_SCORE}`;
+  if (blueScoreFood) blueScoreFood.textContent = `${BLUE_PLAYER_SCORE}`;
+  if (orangeScoreFood) orangeScoreFood.textContent = `${ORANGE_PLAYER_SCORE}`;
 }
 
-if (winnerIconFood) {
-  winnerIconFood.src =
-    winner === "BLUE"
-      ? "/assets/PlayerillustrationBlue.svg"
-      : "/assets/PlayerillustrationOrange.svg";
+/**
+ * Returns the winner display text
+ */
+function getWinnerText(): string {
+  if (WINNER === "BLUE") return "Blue Player";
+  if (WINNER === "ORANGE") return "Orange Player";
+  return "Draw";
 }
 
-setTimeout(() => {
-  winnerScreen.classList.add("active");
-}, 3000);
+/**
+ * Returns the winner icon path for theme1
+ */
+function getWinnerIconPath(): string {
+  return WINNER === "BLUE"
+    ? "/assets/chess_pawn_blue.svg"
+    : "/assets/chess_pawn_orange.svg";
+}
 
-document.querySelector(".back-btn")?.addEventListener("click", () => {
+/**
+ * Returns the winner icon path for theme2
+ */
+function getWinnerIconFoodPath(): string {
+  return WINNER === "BLUE"
+    ? "/assets/PlayerillustrationBlue.svg"
+    : "/assets/PlayerillustrationOrange.svg";
+}
+
+/**
+ * Updates winner name, color class and icons
+ */
+function updateWinnerDisplay(): void {
+  if (WINNER_NAME) {
+    WINNER_NAME.textContent = getWinnerText();
+    WINNER_NAME.classList.add(WINNER.toLowerCase());
+  }
+  if (WINNER_ICON) WINNER_ICON.src = getWinnerIconPath();
+  if (WINNER_ICON_FOOD) WINNER_ICON_FOOD.src = getWinnerIconFoodPath();
+}
+
+/**
+ * Shows winner screen after delay
+ */
+function showWinnerScreen(): void {
+  setTimeout(() => WINNER_SCREEN.classList.add("active"), WINNER_SCREEN_DELAY);
+}
+
+/**
+ * Initializes back button event listeners
+ */
+function initEventListeners(): void {
+  document.querySelector(".back-btn")?.addEventListener("click", navigateHome);
+  document
+    .querySelector(".back-btn-food")
+    ?.addEventListener("click", navigateHome);
+}
+
+/**
+ * Navigates to home page
+ */
+function navigateHome(): void {
   window.location.href = "/";
-});
+}
 
-document.querySelector(".back-btn-food")?.addEventListener("click", () => {
-  window.location.href = "/";
-});
+init();
