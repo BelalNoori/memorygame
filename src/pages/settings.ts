@@ -1,3 +1,5 @@
+export {};
+
 const THEME_PREVIEWS: Record<string, string> = {
   default: "/assets/Memory.svg",
   theme1: "/assets/ThemeVisualVibe.svg",

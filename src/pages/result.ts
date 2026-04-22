@@ -1,3 +1,5 @@
+export{};
+
 const THEME: string | null = localStorage.getItem("theme");
 const BLUE_PLAYER_SCORE: number = parseInt(
   localStorage.getItem("score_player1") || "0",
